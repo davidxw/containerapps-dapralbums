@@ -27,6 +27,11 @@ The entire solution is configured with [GitHub Actions](https://github.com/featu
    | AZURE_CREDENTIALS | The JSON credentials for an Azure subscription. Replace the placeholder values and run the following command to generate the Azure authentication information for this GitHub secret `az ad sp create-for-rbac --name INSERT_SP_NAME --role contributor --scopes /subscriptions/INSERT_SUBSCRIPTION_ID --sdk-auth`. For guidance on adding a secret, [see here](https://docs.microsoft.com/azure/developer/github/connect-from-azure?tabs=azure-portal%2Cwindows#create-a-service-principal-and-add-it-as-a-github-secret) |
    | RESOURCE_GROUP | The name of the resource group to create |
 
+
+   az ad sp create-for-rbac --name "containerapps-dapralbums" --role contributor \
+                                --scopes /subscriptions/5b3860b3-e335-4ba8-af73-98c1d15de6e8/resourceGroups/containerapps-dapralbums \
+                                --sdk-auth
+
 3. Open the Actions tab, select the **Build and Deploy** action and choose to run the workflow. The workflow will build the necessary container images, push them to your private Azure Container Registry (ACR) and deploy the necessary Azure services along with two Container Apps for the respective services.
 
 4. Once the GitHub Actions have completed successfully, navigate to the [Azure Portal](https://portal.azure.com) and select the resource group you created. Open the `album-viewer` container app and browse to the FQDN displayed on the overview blade. You should see the sample application up and running.
