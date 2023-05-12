@@ -7,6 +7,7 @@ param registryUsername string
 param registryServer string
 param httpPort int
 param containerImage string 
+param external bool
 
 resource caEnvironment 'Microsoft.App/managedEnvironments@2022-01-01-preview' existing = {
   name: containerAppsEnvName
@@ -33,7 +34,7 @@ resource containerApp 'Microsoft.App/containerApps@2022-03-01' ={
       ]
       ingress: {
         targetPort: httpPort
-        external: true
+        external: external
       }
       dapr: {
         enabled: true

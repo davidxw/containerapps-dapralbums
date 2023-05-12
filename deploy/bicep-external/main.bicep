@@ -104,6 +104,7 @@ module albumViewerCapp 'modules/container-app.bicep' = {
     containerImage: viewerImage
     httpPort: 3000
     registryServer: registryName
+    external: true
   }
 }
 
@@ -121,6 +122,8 @@ module albumServiceCapp 'modules/container-app.bicep' = {
     containerImage: apiImage
     httpPort: 80
     registryServer: registryName
+    external: false
+    
   }
 }
 
